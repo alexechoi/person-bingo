@@ -5,40 +5,60 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
+    padding: 5vw; /* Padding relative to viewport width */
 }
 
 .bingo-board {
+    width: 80vw; /* Adjust based on viewport width */
     display: grid;
-    grid-template-columns: repeat(5, 100px);
-    grid-gap: 5px;
+    grid-template-columns: repeat(5, 1fr); /* Make columns of equal width */
+    grid-gap: 3vw; /* Adjust based on viewport width */
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 4vw; /* Adjust based on viewport width */
+    border-radius: 2vw; /* Adjust based on viewport width */
+    box-shadow: 0 2vw 3vw rgba(0, 0, 0, 0.1); /* Adjust based on viewport width */
 }
 
 .bingo-board div {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 14vw; /* Adjust based on viewport width */
     background-color: #e4e4e4;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 1vw; /* Adjust based on viewport width */
+    padding: 2vw; /* Adjust based on viewport width */
     text-align: center;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-/* Company themed styles */
 .bingo-board div.selected {
-    background-color: #e60000; /* Company red */
-    color: white; /* Text color change for better readability on red background */
+    background-color: #e60000;
+    color: white;
 }
 
 .bingo-board div:hover {
-    background-color: #b50000; /* Darker Company red for hover effect */
+    background-color: #b50000;
 }
+
+/* For larger devices, set a max width */
+@media (min-width: 768px) {
+    .bingo-board {
+        width: 500px; /* Or whatever maximum width you'd like */
+        grid-gap: 10px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .bingo-board div {
+        height: 80px;
+        border-radius: 5px;
+        padding: 5px;
+    }
+}
+
+
 
 /* Free space in the center - if you want it distinguished */
 .bingo-board div:nth-child(13) {
