@@ -30,10 +30,18 @@ body {
     transition: background-color 0.2s;
 }
 
+/* Company themed styles */
 .bingo-board div.selected {
-    background-color: #a1a1a1;
+    background-color: #e60000; /* Company red */
+    color: white; /* Text color change for better readability on red background */
 }
 
 .bingo-board div:hover {
-    background-color: #c4c4c4;
+    background-color: #b50000; /* Darker Company red for hover effect */
+}
+
+/* Free space in the center - if you want it distinguished */
+.bingo-board div:nth-child(13) {
+    background-color: #e60000; /* Company red for the FREE SPACE */
+    color: white; /* Text color change for better readability on red background */
 }
