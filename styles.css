@@ -16,9 +16,9 @@ h1 {
 }
 
 .bingo-board {
-    width: 80vw;
+    width: 65vw; /* Adjusted width for 4 columns */
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 columns now */
     grid-gap: 3vw;
     background-color: white;
     padding: 4vw;
@@ -30,7 +30,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
+    height: auto; /* Adjust height to fit content and padding */
     background-color: #e4e4e4;
     border-radius: 1vw;
     padding: 3vw 2vw;
