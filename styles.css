@@ -1,12 +1,18 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #e60000; /* Vodafone red background */
     padding: 5vw;
-    color: white; /* Change font color for readability */
+    color: #333; /* Dark text for better readability */
+}
+
+h1 {
+    margin-bottom: 2rem; /* Space between the title and the Bingo board */
+    font-size: 4vw; /* Adjust font size based on viewport width */
 }
 
 .bingo-board {
@@ -24,14 +30,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 14vw;
+    height: auto;
     background-color: #e4e4e4;
     border-radius: 1vw;
-    padding: 2vw;
+    padding: 3vw 2vw;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.2s;
-    font-size: 3vw; /* Adjust font size based on viewport width */
+    font-size: 3vw;
 }
 
 .bingo-board div.selected {
@@ -43,8 +49,11 @@ body {
     background-color: #b50000;
 }
 
-/* For larger devices, set a max width */
 @media (min-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
     .bingo-board {
         width: 500px;
         grid-gap: 10px;
@@ -56,13 +65,7 @@ body {
     .bingo-board div {
         height: 80px;
         border-radius: 5px;
-        padding: 5px;
-        font-size: 16px; /* Reset font size for larger screens */
+        padding: 15px 5px;
+        font-size: 16px;
     }
-}
-
-/* Free space in the center */
-.bingo-board div:nth-child(13) {
-    background-color: #e60000;
-    color: white;
 }
