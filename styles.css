@@ -4,32 +4,34 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
-    padding: 5vw; /* Padding relative to viewport width */
+    background-color: #e60000; /* Vodafone red background */
+    padding: 5vw;
+    color: white; /* Change font color for readability */
 }
 
 .bingo-board {
-    width: 80vw; /* Adjust based on viewport width */
+    width: 80vw;
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Make columns of equal width */
-    grid-gap: 3vw; /* Adjust based on viewport width */
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 3vw;
     background-color: white;
-    padding: 4vw; /* Adjust based on viewport width */
-    border-radius: 2vw; /* Adjust based on viewport width */
-    box-shadow: 0 2vw 3vw rgba(0, 0, 0, 0.1); /* Adjust based on viewport width */
+    padding: 4vw;
+    border-radius: 2vw;
+    box-shadow: 0 2vw 3vw rgba(0, 0, 0, 0.1);
 }
 
 .bingo-board div {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 14vw; /* Adjust based on viewport width */
+    height: 14vw;
     background-color: #e4e4e4;
-    border-radius: 1vw; /* Adjust based on viewport width */
-    padding: 2vw; /* Adjust based on viewport width */
+    border-radius: 1vw;
+    padding: 2vw;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-size: 3vw; /* Adjust font size based on viewport width */
 }
 
 .bingo-board div.selected {
@@ -44,7 +46,7 @@ body {
 /* For larger devices, set a max width */
 @media (min-width: 768px) {
     .bingo-board {
-        width: 500px; /* Or whatever maximum width you'd like */
+        width: 500px;
         grid-gap: 10px;
         padding: 20px;
         border-radius: 10px;
@@ -55,13 +57,12 @@ body {
         height: 80px;
         border-radius: 5px;
         padding: 5px;
+        font-size: 16px; /* Reset font size for larger screens */
     }
 }
 
-
-
-/* Free space in the center - if you want it distinguished */
+/* Free space in the center */
 .bingo-board div:nth-child(13) {
-    background-color: #e60000; /* Company red for the FREE SPACE */
-    color: white; /* Text color change for better readability on red background */
+    background-color: #e60000;
+    color: white;
 }
