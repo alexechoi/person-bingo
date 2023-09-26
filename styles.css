@@ -13,10 +13,10 @@ body {
 h1 {
     margin-bottom: 2rem; /* Space between the title and the Bingo board */
     font-size: 4vw; /* Adjust font size based on viewport width */
+    color: #FFFFFF;
 }
 
 .bingo-board {
-    width: 65vw; /* Adjusted width for 4 columns */
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 columns now */
     grid-gap: 3vw;
