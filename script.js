@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Adding remove button
                 const removeBtn = document.createElement('button');
+                removeBtn.classList.add('remove-btn');
                 removeBtn.innerText = 'Remove';
                 removeBtn.addEventListener('click', () => {
                     localStorage.removeItem(key);
