@@ -8,7 +8,12 @@ fetch('data.json')
         boardItems.forEach(item => {
             const div = document.createElement('div');
             div.innerText = item;
-            div.addEventListener('click', () => div.classList.toggle('selected'));
+            div.addEventListener('click', () => {
+                if (!div.classList.contains('selected')) {
+                    inputPopup.style.display = 'flex';
+                    clickedDiv = div; // store the clicked div
+                }
+            });
             board.appendChild(div);
         });
     });
@@ -32,13 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitName = document.getElementById('submitName');
     
     let clickedDiv;
-
-    board.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('selected')) {
-            inputPopup.style.display = 'flex';
-            clickedDiv = e.target; // store the clicked div
-        }
-    });
 
     submitName.addEventListener('click', () => {
         if (personNameInput.value.trim()) {
@@ -68,7 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const key = localStorage.key(i);
             const value = localStorage.getItem(key);
             const listItem = document.createElement('li');
-            listItem.textContent = `${key}: ${value}`;
+            const span = document.createElement('span'); // New element
+            span.textContent = key;
+            listItem.appendChild(span); 
+            listItem.appendChild(document.createTextNode(`: ${value}`));
             namesList.appendChild(listItem);
         }
         namesPopup.style.display = 'flex';
