@@ -26,6 +26,15 @@ function shuffle(array) {
     return array;
 }
 
+// Close popups when clicking on the dark translucent background
+document.querySelectorAll('.popup').forEach(popup => {
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {  // Ensure that only the background is clicked
+            popup.style.display = 'none';
+        }
+    });
+});
+
 // Enter names and overlay
 
 document.addEventListener('DOMContentLoaded', () => {
