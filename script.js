@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             const shuffledItems = shuffle(data.items);
-            const boardItems = shuffledItems.slice(0, 20);
+            const boardItems = shuffledItems.slice(0, 16); // Changed to 16 for a 4x4 grid
 
             boardItems.forEach(item => {
                 const div = document.createElement('div');
@@ -50,15 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showNamesBtn.addEventListener('click', () => {
         namesList.innerHTML = '';
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            const value = localStorage.getItem(key);
-            const listItem = document.createElement('li');
-            const span = document.createElement('span');
-            span.textContent = key;
-            listItem.appendChild(span);
-            listItem.appendChild(document.createTextNode(`: ${value}`));
-            namesList.appendChild(listItem);
+        if (localStorage.length === 0) { // Added condition to check if there are no names yet
+            namesList.innerHTML = 'You have not completed any tiles yet!';
+        } else {
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                const listItem = document.createElement('li');
+                const span = document.createElement('span');
+                span.textContent = key;
+                listItem.appendChild(span);
+                listItem.appendChild(document.createTextNode(`: ${value}`));
+                namesList.appendChild(listItem);
+            }
         }
         namesPopup.style.display = 'flex';
     });
