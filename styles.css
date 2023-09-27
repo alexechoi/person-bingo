@@ -16,13 +16,15 @@ h1 {
     font-size: calc(20px + 4vw); /* Updated line */
     color: #FFFFFF;
     min-width: 300px; /* Optional, ensures that the title doesn't get too small */
+    text-align: center;
 }
 
 #subtitle {
     color: #FFF; /* White color for better visibility */
-    font-size: 1.5vw; /* Smaller font size than the title */
+    font-size: calc(5px + 1.5vw); /* Smaller font size than the title */
     margin-top: -1rem; /* Adjust margin to reduce space between title and subtitle */
     margin-bottom: 2rem; /* Space between the subtitle and the Bingo board */
+    text-align: center;
 }
 
 .bingo-board {
