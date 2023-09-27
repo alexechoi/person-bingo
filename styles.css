@@ -111,6 +111,12 @@ button:hover {
     margin-right: 10px; /* Adds some space between title and name */
 }
 
+.remove-btn {
+    margin-top: 0;  /* Override the margin-top for this specific button */
+    padding: 5px 10px;  /* Adjust padding to make the button smaller */
+    font-size: 12px;  /* Adjust font size to make the text smaller */
+}
+
 /* For larger devices */
 @media (min-width: 768px) {
     .popup-content {
