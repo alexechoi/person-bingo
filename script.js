@@ -20,3 +20,40 @@ function shuffle(array) {
     }
     return array;
 }
+
+// Enter names and overlay
+
+document.addEventListener('DOMContentLoaded', () => {
+    const board = document.querySelector('.bingo-board');
+    
+    board.addEventListener('click', (e) => {
+        if (e.target.classList.contains('selected')) {
+            const personName = prompt('Enter the name of the person:');
+            if (personName) {
+                localStorage.setItem(e.target.innerText, personName);
+            }
+        }
+    });
+
+    const namesPopup = document.getElementById('namesPopup');
+    const namesList = document.getElementById('namesList');
+    const showNamesBtn = document.getElementById('showNamesBtn');
+    const closePopup = document.getElementById('closePopup');
+
+    showNamesBtn.addEventListener('click', () => {
+        namesList.innerHTML = '';
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+            const listItem = document.createElement('li');
+            listItem.textContent = `${key}: ${value}`;
+            namesList.appendChild(listItem);
+        }
+        namesPopup.style.display = 'flex';
+    });
+
+    closePopup.addEventListener('click', () => {
+        namesPopup.style.display = 'none';
+    });
+});
+
