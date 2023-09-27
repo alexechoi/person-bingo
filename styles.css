@@ -54,7 +54,7 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #e60000; /* Vodafone red */
+    background-color: #b50000; /* Vodafone red */
     color: white; /* Text color */
     border: none;
     border-radius: 5px; /* Rounded corners */
@@ -62,7 +62,7 @@ button {
 }
 
 button:hover {
-    background-color: #b50000; /* Darker red on hover */
+    background-color: #e60000;
 }
 
 .popup {
@@ -82,6 +82,21 @@ button:hover {
     padding: 20px;
     border-radius: 5px;
     text-align: center;
+}
+
+#namesList {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0;
+}
+
+#namesList li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+#namesList li span {
+    font-weight: bold; /* Makes the card title bold */
+    margin-right: 10px; /* Adds some space between title and name */
 }
 
 /* For larger devices */
