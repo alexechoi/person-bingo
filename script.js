@@ -1,18 +1,17 @@
-fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-        const shuffledItems = shuffle(data.items);
-        const boardItems = shuffledItems.slice(0, 20); // Only need 20 items for 5x4
+document.addEventListener('DOMContentLoaded', () => {
+    const board = document.querySelector('.bingo-board');
+    const inputPopup = document.getElementById('inputPopup');
+    const alertPopup = document.getElementById('alert');
+    const closeAlert = document.getElementById('closeAlert');
+    const personNameInput = document.getElementById('personName');
+    const submitName = document.getElementById('submitName');
+    let clickedDiv;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const board = document.querySelector('.bingo-board');
-            const inputPopup = document.getElementById('inputPopup');
-            const alertPopup = document.getElementById('alert');
-            const closeAlert = document.getElementById('closeAlert');
-            const personNameInput = document.getElementById('personName');
-            const submitName = document.getElementById('submitName');
-
-            let clickedDiv;
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const shuffledItems = shuffle(data.items);
+            const boardItems = shuffledItems.slice(0, 20);
 
             boardItems.forEach(item => {
                 const div = document.createElement('div');
@@ -20,63 +19,63 @@ fetch('data.json')
                 div.addEventListener('click', () => {
                     if (!div.classList.contains('selected')) {
                         inputPopup.style.display = 'flex';
-                        clickedDiv = div; // store the clicked div
+                        clickedDiv = div;
                     }
                 });
                 board.appendChild(div);
             });
+        });
 
-            submitName.addEventListener('click', () => {
-                if (personNameInput.value.trim()) {
-                    clickedDiv.classList.add('selected');
-                    localStorage.setItem(clickedDiv.innerText, personNameInput.value.trim());
-                    personNameInput.value = '';
-                    inputPopup.style.display = 'none';
-                } else {
-                    alertPopup.style.display = 'flex';
-                    inputPopup.style.display = 'none';
-                }
-            });
+    submitName.addEventListener('click', () => {
+        if (personNameInput.value.trim()) {
+            clickedDiv.classList.add('selected');
+            localStorage.setItem(clickedDiv.innerText, personNameInput.value.trim());
+            personNameInput.value = '';
+            inputPopup.style.display = 'none';
+        } else {
+            alertPopup.style.display = 'flex';
+            inputPopup.style.display = 'none';
+        }
+    });
 
-            closeAlert.addEventListener('click', () => {
-                alertPopup.style.display = 'none';
-                personNameInput.value = ''; // clear the input
-            });
+    closeAlert.addEventListener('click', () => {
+        alertPopup.style.display = 'none';
+        personNameInput.value = '';
+    });
 
-            const namesPopup = document.getElementById('namesPopup');
-            const namesList = document.getElementById('namesList');
-            const showNamesBtn = document.getElementById('showNamesBtn');
-            const closePopup = document.getElementById('closePopup');
+    const namesPopup = document.getElementById('namesPopup');
+    const namesList = document.getElementById('namesList');
+    const showNamesBtn = document.getElementById('showNamesBtn');
+    const closePopup = document.getElementById('closePopup');
 
-            showNamesBtn.addEventListener('click', () => {
-                namesList.innerHTML = '';
-                for (let i = 0; i < localStorage.length; i++) {
-                    const key = localStorage.key(i);
-                    const value = localStorage.getItem(key);
-                    const listItem = document.createElement('li');
-                    const span = document.createElement('span');
-                    span.textContent = key;
-                    listItem.appendChild(span);
-                    listItem.appendChild(document.createTextNode(`: ${value}`));
-                    namesList.appendChild(listItem);
-                }
-                namesPopup.style.display = 'flex';
-            });
+    showNamesBtn.addEventListener('click', () => {
+        namesList.innerHTML = '';
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+            const listItem = document.createElement('li');
+            const span = document.createElement('span');
+            span.textContent = key;
+            listItem.appendChild(span);
+            listItem.appendChild(document.createTextNode(`: ${value}`));
+            namesList.appendChild(listItem);
+        }
+        namesPopup.style.display = 'flex';
+    });
 
-            closePopup.addEventListener('click', () => {
-                namesPopup.style.display = 'none';
-            });
+    closePopup.addEventListener('click', () => {
+        namesPopup.style.display = 'none';
+    });
 
-            // Close popups when clicking on the dark translucent background
-            document.querySelectorAll('.popup').forEach(popup => {
-                popup.addEventListener('click', (e) => {
-                    if (e.target === popup) {
-                        popup.style.display = 'none';
-                    }
-                });
-            });
+    // Close popups when clicking on the dark translucent background
+    document.querySelectorAll('.popup').forEach(popup => {
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
         });
     });
+});
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
