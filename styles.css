@@ -54,6 +54,7 @@ h1 {
 
 .bingo-board div:hover {
     background-color: #b50000;
+    color: white;
 }
 
 button {
