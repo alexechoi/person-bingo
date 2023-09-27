@@ -27,10 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const board = document.querySelector('.bingo-board');
     
     board.addEventListener('click', (e) => {
-        if (e.target.classList.contains('selected')) {
+        if (!e.target.classList.contains('selected')) {
             const personName = prompt('Enter the name of the person:');
             if (personName) {
+                e.target.classList.add('selected');
                 localStorage.setItem(e.target.innerText, personName);
+            } else {
+                alert('You must enter a name to mark off this square!');
             }
         }
     });
