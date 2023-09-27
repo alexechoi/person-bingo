@@ -11,9 +11,11 @@ body {
 }
 
 h1 {
-    margin-bottom: 2rem; /* Space between the title and the Bingo board */
-    font-size: 4vw; /* Adjust font size based on viewport width */
+    margin-bottom: 2rem;
+    font-size: 4vw;
+    font-size: calc(20px + 4vw); /* Updated line */
     color: #FFFFFF;
+    min-width: 300px; /* Optional, ensures that the title doesn't get too small */
 }
 
 #subtitle {
@@ -117,6 +119,7 @@ button:hover {
 @media (min-width: 768px) {
     h1 {
         font-size: 24px;
+        min-width: auto; /* Resetting the min-width for larger screens */
     }
 
     .bingo-board {
