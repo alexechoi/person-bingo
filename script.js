@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Clear localStorage on page refresh
+    localStorage.clear();
+
     const board = document.querySelector('.bingo-board');
     const inputPopup = document.getElementById('inputPopup');
     const alertPopup = document.getElementById('alert');
@@ -11,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             const shuffledItems = shuffle(data.items);
-            const boardItems = shuffledItems.slice(0, 16); // Changed to 16 for a 4x4 grid
+            const boardItems = shuffledItems.slice(0, 16);
 
             boardItems.forEach(item => {
                 const div = document.createElement('div');
@@ -20,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!div.classList.contains('selected')) {
                         inputPopup.style.display = 'flex';
                         clickedDiv = div;
+                    } else {  // Unselect and remove from localStorage if already selected
+                        div.classList.remove('selected');
+                        localStorage.removeItem(div.innerText);
                     }
                 });
                 board.appendChild(div);
@@ -50,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showNamesBtn.addEventListener('click', () => {
         namesList.innerHTML = '';
-        if (localStorage.length === 0) { // Added condition to check if there are no names yet
+        if (localStorage.length === 0) {
             namesList.innerHTML = 'You have not completed any tiles yet!';
         } else {
             for (let i = 0; i < localStorage.length; i++) {
@@ -60,7 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const span = document.createElement('span');
                 span.textContent = key;
                 listItem.appendChild(span);
-                listItem.appendChild(document.createTextNode(`: ${value}`));
+                listItem.appendChild(document.createTextNode(`: ${value} `));
+
+                // Adding remove button
+                const removeBtn = document.createElement('button');
+                removeBtn.innerText = 'Remove';
+                removeBtn.addEventListener('click', () => {
+                    localStorage.removeItem(key);
+                    listItem.remove();
+                    Array.from(board.children).forEach(div => {
+                        if (div.innerText === key) {
+                            div.classList.remove('selected');
+                        }
+                    });
+                });
+                listItem.appendChild(removeBtn);
+
                 namesList.appendChild(listItem);
             }
         }
