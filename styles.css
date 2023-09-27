@@ -54,6 +54,15 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #e60000; /* Vodafone red */
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Transition effect */
+}
+
+button:hover {
+    background-color: #b50000; /* Darker red on hover */
 }
 
 .popup {
