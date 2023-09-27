@@ -25,17 +25,36 @@ function shuffle(array) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const board = document.querySelector('.bingo-board');
+    const inputPopup = document.getElementById('inputPopup');
+    const alertPopup = document.getElementById('alert');
+    const closeAlert = document.getElementById('closeAlert');
+    const personNameInput = document.getElementById('personName');
+    const submitName = document.getElementById('submitName');
     
+    let clickedDiv;
+
     board.addEventListener('click', (e) => {
         if (!e.target.classList.contains('selected')) {
-            const personName = prompt('Enter the name of the person:');
-            if (personName) {
-                e.target.classList.add('selected');
-                localStorage.setItem(e.target.innerText, personName);
-            } else {
-                alert('You must enter a name to mark off this square!');
-            }
+            inputPopup.style.display = 'flex';
+            clickedDiv = e.target; // store the clicked div
         }
+    });
+
+    submitName.addEventListener('click', () => {
+        if (personNameInput.value.trim()) {
+            clickedDiv.classList.add('selected');
+            localStorage.setItem(clickedDiv.innerText, personNameInput.value.trim());
+            personNameInput.value = '';
+            inputPopup.style.display = 'none';
+        } else {
+            alertPopup.style.display = 'flex';
+            inputPopup.style.display = 'none';
+        }
+    });
+
+    closeAlert.addEventListener('click', () => {
+        alertPopup.style.display = 'none';
+        personNameInput.value = ''; // clear the input
     });
 
     const namesPopup = document.getElementById('namesPopup');
